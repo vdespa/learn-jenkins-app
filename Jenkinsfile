@@ -17,5 +17,19 @@ pipeline {
                 sh 'npm run build'
             }
         }
+
+        stage('unit tests') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    //args '--entrypoint=""'
+                    //reuseNode true
+                }
+            }
+            steps {
+                sh 'npm install'
+                sh 'npm test'
+            }
+        }        
     }
 }
