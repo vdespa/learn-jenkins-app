@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npm run test -- --testResultsProcessor=\"jest-junit\"",
+    "test": "npm run test --testResultsProcessor=\"jest-junit\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
