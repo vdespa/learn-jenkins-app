@@ -17,6 +17,7 @@ pipeline {
                     npm ci
                     npm run build
                     ls -la
+                    chown -R 130:137 "/.npm"
                 '''
             }
         }
