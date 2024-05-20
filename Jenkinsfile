@@ -9,13 +9,6 @@ pipeline {
                     reuseNode true
                 }
             }
-        stage('Test') {
-            steps {
-                sh '''
-                    echo "Test stage"
-               '''
-            }
-        }
             steps {
                 sh '''
                     ls -la
@@ -25,6 +18,13 @@ pipeline {
                     npm run build
                     ls -la
                 '''
+            }
+        }
+        stage('Test') {
+            steps {
+                sh '''
+                    echo "Test stage"
+               '''
             }
         }
     }
