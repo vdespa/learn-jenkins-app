@@ -11,7 +11,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    ls -la
+                    #ls -la
                     node --version
                     npm --version
                     npm ci
@@ -24,10 +24,10 @@ pipeline {
             steps {
                 sh '''
                     echo "Test stage"
-                    test -f "index.html"
-                    echo "-f index.html"
-                    test -f "build/index.html"
+                    #echo "-f index.html"
+                    #test -f "index.html"
                     echo "-f build/index.html"
+                    test -f "build/index.html"
                     #grep "index.html" build/index.html
                '''
             }
