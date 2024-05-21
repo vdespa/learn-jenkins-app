@@ -24,11 +24,10 @@ pipeline {
             steps {
                 sh '''
                     echo "Test stage"
-                    #echo "-f index.html"
-                    #test -f "index.html"
                     echo "-f build/index.html"
                     test -f "build/index.html"
                     #grep "index.html" build/index.html
+                    npm test
                '''
             }
         }
