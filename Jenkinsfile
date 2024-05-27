@@ -21,7 +21,7 @@ pipeline {
             }
         }
         stage('Test') {
-            agent {
+            agent { //reusing the node.js image in docker
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
