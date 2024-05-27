@@ -32,7 +32,7 @@ pipeline {
                     echo "Test stage"
                     test -f "build/index.html"
                     #grep "index.html" build/index.html
-                    #npm test
+                    npm test
                '''
             }
         }
