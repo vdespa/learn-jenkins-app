@@ -2,64 +2,66 @@ pipeline {
     agent any
 
     stages {
+        /*
+
         stage('Build') {
-            agent{
-                docker{
+            agent {
+                docker {
                     image 'node:18-alpine'
                     reuseNode true
                 }
             }
             steps {
                 sh '''
-                ls -la
-                node --version
-                npm --version
-                npm ci
-                npm run build
-                ls -la
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
                 '''
             }
         }
-        stage ('Test'){
-            agent{
-                docker{
+        */
+
+        stage('Test') {
+            agent {
+                docker {
                     image 'node:18-alpine'
                     reuseNode true
                 }
             }
-            
-            steps{
-                echo 'Test stage'
+
+            steps {
                 sh '''
-                test -f build/index.html
-                npm test
+                    #test -f build/index.html
+                    npm test
                 '''
             }
         }
-        stage ('E2E'){
-            agent{
-                docker{
-                    image 'mcr.microsoft.com/playwright:v1.44.1-jammy'
+
+        stage('E2E') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
                     reuseNode true
                 }
             }
-            
-            steps{
-                echo 'Test stage'
+
+            steps {
                 sh '''
-                npm install -g serve
-                node_modules/.bin/semver -s build 
-                npx playwright test &
-                sleep 10
+                    npm install serve
+                    serve -s build &
+                    sleep 10
+                    npx playwright test
                 '''
             }
         }
-       
     }
-     post{
-            always{
-                junit 'jest-results/junit.xml'
-            }
 
+    post {
+        always {
+            junit 'jest-results/junit.xml'
         }
+    }
 }
