@@ -15,7 +15,7 @@ pipeline {
                    node --version
                    npm --version
                    ls | grep package-lock
-                   npm install
+                   npm install --foreground-scripts
                    npm run build
                    ls -la
                    '''
