@@ -15,7 +15,7 @@ pipeline {
                    node --version
                    npm --version
                    ls | grep package-lock
-                   NODE_OPTIONS="--no-network-family-autoselection" npm ci
+                   npm install
                    npm run build
                    ls -la
                    '''
