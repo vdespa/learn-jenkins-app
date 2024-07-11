@@ -14,7 +14,7 @@ pipeline {
                    ls -la
                    node --version
                    npm --version
-                   npm ci
+                   npm install --no-package-lock
                    npm run build
                    ls -la
                    '''
