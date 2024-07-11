@@ -14,7 +14,7 @@ pipeline {
                    ls -la
                    node --version
                    npm --version
-                   NODE_OPTIONS="--no-network-family-autoselection" npm ci
+                   npm install
                    npm run build
                    ls -la
                    '''
