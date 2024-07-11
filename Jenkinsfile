@@ -15,6 +15,7 @@ pipeline {
                    node --version
                    npm --version
                    ls | grep package-lock
+                   npm cache clean
                    npm ci
                    npm run build
                    ls -la
