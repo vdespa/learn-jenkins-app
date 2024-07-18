@@ -3,7 +3,7 @@ pipeline {
     
     stages {
         stage('Build') {
-            agent any {
+            "agent any" {
               docker {
                   image 'dockerhub.artifactory.davita.com/alpine:latest'
                   reuseNode true
