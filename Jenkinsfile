@@ -8,7 +8,8 @@ pipeline {
                   image 'dockerhub.artifactory.davita.com/alpine:latest'
                   reuseNode true
               }
-          }     
+          }    
+            
             steps {
                 sh '''
                    ls -la
