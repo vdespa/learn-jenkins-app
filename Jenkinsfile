@@ -35,4 +35,9 @@ pipeline {
             }
         }
     }
+post {
+    always{
+        unit 'test-results/unit.xml'
+    }
+}
 }
