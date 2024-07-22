@@ -20,6 +20,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Test') {
             agent {
                 docker {
@@ -27,6 +28,7 @@ pipeline {
                     reuseNode true
                 }
             }
+            
             steps {
                sh '''
                     test -f build/index.html
@@ -35,6 +37,7 @@ pipeline {
             }
         }
     }
+
 post {
     always{
         unit 'test-results/unit.xml'
