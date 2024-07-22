@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+        /*
         stage('Build') {
             agent {
                 docker {
@@ -20,6 +21,7 @@ pipeline {
                 '''
             }
         }
+        */
 
         stage('Test') {
             agent {
@@ -38,9 +40,9 @@ pipeline {
         }
     }
 
-/* post {
+ post {
     always{
         unit 'test-results/unit.xml'
     }
-}*/
+}
 }
