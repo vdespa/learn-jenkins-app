@@ -31,13 +31,12 @@ pipeline {
                 }
             }
             
-            
+            steps {
+               sh '''
+                    test -f build/index.html
+                    npm test
+               '''
+            }
         }
     }
-
- post {
-    always{
-        unit 'test-results/unit.xml'
-    }
-}
 }
