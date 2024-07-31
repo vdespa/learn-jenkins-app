@@ -27,6 +27,7 @@ pipeline {
                     image 'node:18-alpine'
                     reuseNode true
                 }
+            }
             steps {
                 echo 'Test stage'
                 sh '''
