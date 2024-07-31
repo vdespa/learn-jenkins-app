@@ -24,7 +24,7 @@ pipeline {
                     ls -la
                 '''
             }
-        }
+
 
         stage('Test') {
             agent {
@@ -52,8 +52,8 @@ pipeline {
             steps {
                 echo 'EC2 Test stage'
                 sh '''
-                    npm install -g serve
-                    serve -s build
+                    npm install serve
+                    node_modules/.bin/serve -s build
                     npx playwright test
                 '''
             }
