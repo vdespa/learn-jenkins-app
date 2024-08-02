@@ -4,7 +4,7 @@ pipeline {
     environment {
         NETLIFY_SITE_ID = 'a69de878-bef5-4584-8613-7c9cb7352c5d'
         NETLIFY_AUTH_TOKEN = credentials('netflix-token')
-        REACT_APP_VERSION = '1.2.3'
+        REACT_APP_VERSION = "1.0.$BUILD_ID"
     }
 
     stages {
