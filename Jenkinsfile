@@ -103,6 +103,12 @@ pipeline {
             }
         }
 
+        stage('Manual approval') {
+            steps {
+                input message: 'Do you sish to deploy to prod?', ok: 'yes, I do.'
+            }
+        }
+
         stage('Deploy Prod') {
             agent {
                 docker {
