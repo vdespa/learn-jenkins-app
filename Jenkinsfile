@@ -4,6 +4,7 @@ pipeline {
     environment {
         NETLIFY_SITE_ID = 'a69de878-bef5-4584-8613-7c9cb7352c5d'
         NETLIFY_AUTH_TOKEN = credentials('netflix-token')
+        REACT_APP_VERSION = '1.2.3'
     }
 
     stages {
@@ -142,36 +143,7 @@ pipeline {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'playwright Staging HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                 }
             }
-        }
-        /*
-        stage('Manual approval') {
-            steps {
-                timeout(time: 15, unit:'MINUTES') {
-                    input message: 'Do you wish to deploy to prod?', ok: 'yes, I do.'
-                }
-            }
-        }
-        */
-
-        /*
-        stage('Deploy Prod') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    npm install netlify-cli
-                    node_modules/.bin/netlify --version
-                    echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=build --prod
-                '''
-            }
-        }
-        */
+        }        
 
         stage('Deploy Prod and E2E') {
             agent {
