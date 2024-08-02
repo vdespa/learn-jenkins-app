@@ -120,6 +120,10 @@ pipeline {
                 }
             }
 
+            environment {
+                CI_ENVIRONMENT_URL = 'STAGING_URL_TO_SET'
+            }
+
             steps {
                 echo 'Deploy and E2E test stage'
                 sh '''
