@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NETLIFY_SITE_ID = 'a69de878-bef5-4584-8613-7c9cb7352c5d'
-        NETFLIX_AUTH_TOKEN = credentials('netflix-token')
+        NETLIFY_AUTH_TOKEN = credentials('netflix-token')
     }
 
     stages {
@@ -94,9 +94,10 @@ pipeline {
             steps {
                 sh '''
                     npm install netlify-cli
-                    node_modules//.bin/netlify --version
+                    node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
-                    node_modules//.bin/netlify status
+                    node_modules/.bin/netlify status
+                    node_modules/.bin/netlify deploy --dir=build --prod
                 '''
             }
         }
