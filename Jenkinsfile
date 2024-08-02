@@ -127,8 +127,6 @@ pipeline {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'playwright E2E HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                 }
             }
-
-
         }
-
+    }
 }
