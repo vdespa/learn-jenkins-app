@@ -85,10 +85,7 @@ pipeline {
                     sh """
                         ${tool 'sonar-scanner'}/bin/sonar-scanner \
                             -Dsonar.analysis.buildNumber=${BUILD_NUMBER} \
-                            -Dsonar.links.ci=${BUILD_URL} \
-                            -Dsonar.pullrequest.key=${CHANGE_ID} \
-                            -Dsonar.pullrequest.branch=${CHANGE_BRANCH} \
-                            -Dsonar.pullrequest.base=${CHANGE_TARGET}
+                            -Dsonar.links.ci=${BUILD_URL}
                     """
                 }
             }
