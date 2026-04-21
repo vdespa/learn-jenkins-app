@@ -1,0 +1,108 @@
+pipeline {
+    agent any
+
+    environment {
+        REACT_APP_VERSION = "1.0.$BUILD_ID"
+    }
+
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    echo "Building the application..."
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
+                '''
+            }
+        }
+
+        stage('Run Tests Parallel') {
+            parallel {
+                stage('Unit test') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            test -f build/index.html
+                            CI=true npm test -- --watchAll=false --coverage --coverageReporters=lcov
+                        '''
+                    }
+                    post {
+                        always {
+                            junit 'jest-results/junit.xml'
+                        }
+                    }
+                }
+
+                stage('E2E') {
+                    agent {
+                        docker {
+                            image 'my-playwright'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            serve -s build &
+                            sleep 10
+                            npx playwright test --reporter=html
+                        '''
+                    }
+                    post {
+                        always {
+                            publishHTML([
+                                allowMissing: false,
+                                alwaysLinkToLastBuild: false,
+                                keepAll: false,
+                                reportDir: 'playwright-report',
+                                reportFiles: 'index.html',
+                                reportName: 'Playwright Local',
+                                useWrapperFileDirectly: true
+                            ])
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('SAST - SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh """
+                        ${tool 'sonar-scanner'}/bin/sonar-scanner \
+                            -Dsonar.analysis.buildNumber=${BUILD_NUMBER} \
+                            -Dsonar.links.ci=${BUILD_URL} \
+                            -Dsonar.pullrequest.key=${CHANGE_ID} \
+                            -Dsonar.pullrequest.branch=${CHANGE_BRANCH} \
+                            -Dsonar.pullrequest.base=${CHANGE_TARGET}
+                    """
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'build/**/*', fingerprint: true
+            }
+        }
+    }
+    post {
+        success {
+            echo "PR pipeline completed successfully!"
+        }
+    }
+}
