@@ -74,3 +74,5 @@ PR-Check
 Revision Check 1
 commit1 check
 commit2 check
+PR1-Link check
+PR2-Link check
