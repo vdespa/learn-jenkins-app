@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    parameters {
+        string(name: 'PR_URL', defaultValue: '', description: 'Pull Request URL for SonarQube analysis')
+    }
     
     environment {
         REACT_APP_VERSION = "1.0.$BUILD_ID"
@@ -97,11 +101,19 @@ pipeline {
         stage('SAST - SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh """
-                        ${tool 'sonar-scanner'}/bin/sonar-scanner \
-                            -Dsonar.analysis.buildNumber=${BUILD_NUMBER} \
-                            -Dsonar.links.ci=${BUILD_URL}
-                    """
+                    script {
+                        def scannerCmd = """
+                            ${tool 'sonar-scanner'}/bin/sonar-scanner \
+                                -Dsonar.analysis.buildNumber=${BUILD_NUMBER} \
+                                -Dsonar.links.ci=${BUILD_URL}
+                        """
+                        
+                        if (params.PR_URL) {
+                            scannerCmd += " -Dsonar.pullrequest.key=${params.PR_URL}"
+                        }
+                        
+                        sh scannerCmd
+                    }
                 }
             }
         }
