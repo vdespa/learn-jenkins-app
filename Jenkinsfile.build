@@ -109,7 +109,9 @@ pipeline {
                         """
                         
                         if (params.PR_URL) {
-                            scannerCmd += " -Dsonar.pullrequest.key=${params.PR_URL}"
+                            def prNumber = params.PR_URL.tokenize('/')[-1]
+                            scannerCmd += " -Dsonar.pullrequest.key=${prNumber}"
+                            scannerCmd += " -Dsonar.links.issue=${params.PR_URL}"
                         }
                         
                         sh scannerCmd
