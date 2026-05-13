@@ -102,19 +102,16 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     script {
-                        def scannerCmd = """
-                            ${tool 'sonar-scanner'}/bin/sonar-scanner \
-                                -Dsonar.analysis.buildNumber=${BUILD_NUMBER} \
-                                -Dsonar.links.ci=${BUILD_URL}
-                        """
+                        def sonarCmd = "${tool 'sonar-scanner'}/bin/sonar-scanner"
+                        def sonarArgs = "-Dsonar.analysis.buildNumber=${BUILD_NUMBER} -Dsonar.links.ci=${BUILD_URL}"
                         
                         if (params.PR_URL) {
-                            def prNumber = params.PR_URL.tokenize('/')[-1]
-                            scannerCmd += " -Dsonar.pullrequest.key=${prNumber}"
-                            scannerCmd += " -Dsonar.links.issue=${params.PR_URL}"
+                            def prNumber = params.PR_URL.tokenize('/')[-1].trim()
+                            sonarArgs += " -Dsonar.pullrequest.key=${prNumber}"
+                            sonarArgs += " -Dsonar.links.issue=${params.PR_URL}"
                         }
                         
-                        sh scannerCmd
+                        sh "${sonarCmd} ${sonarArgs}"
                     }
                 }
             }
