@@ -29,7 +29,8 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo "Hello Hello"
+                    test -f build/index.html
+                    echo "Status of build/index.html"
                 '''
             }
         }
