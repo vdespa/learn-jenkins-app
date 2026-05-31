@@ -31,6 +31,7 @@ pipeline {
                 sh '''
                     test -f build/index.html
                     echo "Status of build/index.html: $?"
+                    npm test
                 '''
             }
         }
