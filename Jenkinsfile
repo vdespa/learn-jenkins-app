@@ -1,6 +1,5 @@
 pipeline {
-        agent any
-
+    agent any
     stages {
         stage('Build') {
             agent {
@@ -20,39 +19,41 @@ pipeline {
                 '''
             }
         }
-        stage('Test') {
-            agent {
-                docker {
-                    image 'node:24.12.0-alpine3.23'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    test -f build/index.html
-                    echo "Status of index file$?"
-                    npm test
-                '''
-            }
-        }
 
-        stage('E2E') {
-            agent {
-                docker {
-                    image 'mcr.microsoft.com/playwright:v1.60.0-noble'
-                    reuseNode true
-                    // args '-u root:root'
-                    //
-                    //
+        stage('Tests') {
+            parallel {
+                stage('Unit tests') {
+                    agent {
+                    docker {
+                        image 'node:24.12.0-alpine3.23'
+                        reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            test -f build/index.html
+                            echo "Status of index file$?"
+                            npm test
+                        '''
+                    }
                 }
-            }
-            steps {
-                sh '''
-                    npm install serve
-                    node_modules/.bin/serve -s build &
-                    sleep 10
-                    npx playwright test
-                '''
+
+                stage('E2E') {
+                    agent {
+                        docker {
+                            image 'mcr.microsoft.com/playwright:v1.60.0-noble'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            npm install serve
+                            node_modules/.bin/serve -s build &
+                            sleep 10
+                            npx playwright test
+                        '''
+                    }
+                }
             }
         }
     }
@@ -62,5 +63,4 @@ pipeline {
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }
-
 }
