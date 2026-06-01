@@ -38,7 +38,7 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.39.0",
+    "@playwright/test": "^1.60.0",
     "@types/node": "^20.8.6"
   },
   "jest-junit": {
