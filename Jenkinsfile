@@ -102,11 +102,11 @@ pipeline {
                     reuseNode true
                 }
             }
+            environment {
+                CI_ENVIRONMENT_URL = 'https://gleaming-stroopwafel-31a7b7.netlify.app/'  
+            }
             steps {
                 sh '''
-                    npm install serve
-                    node_modules/.bin/serve -s build &
-                    sleep 10
                     npx playwright test
                 '''
             }
