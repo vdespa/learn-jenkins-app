@@ -91,7 +91,7 @@ pipeline {
 
                     node_modules/.bin/netlify status
 
-                    node_modules/.bin/netlify deploy --dir=build --prod
+                    node_modules/.bin/netlify deploy --dir=build --prod --debug=true
                 '''
             }
         }
