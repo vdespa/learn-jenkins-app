@@ -71,9 +71,9 @@ pipeline {
                         }
                     }
                 } 
+                */
             }
         }
-*/
 /*
         stage('Deploy') {
             agent {
