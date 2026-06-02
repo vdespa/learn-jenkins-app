@@ -86,7 +86,7 @@ pipeline {
                 sh '''
 
                     node_modules/.bin/netlify logout
-                    node_modules/.binnetlify login --auth $NETLIFY_AUTH_TOKEN 
+                    node_modules/.bin/netlify login --auth $NETLIFY_AUTH_TOKEN 
                     #netlify login
   
                     npm install netlify-cli
