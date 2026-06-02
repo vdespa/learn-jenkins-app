@@ -85,7 +85,7 @@ pipeline {
             steps {
                 sh '''
 
-                    node_modules/.binnetlify logout
+                    node_modules/.bin/netlify logout
                     node_modules/.binnetlify login --auth $NETLIFY_AUTH_TOKEN 
                     #netlify login
   
