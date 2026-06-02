@@ -78,7 +78,7 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    #image 'node:24.12.0-alpine3.23'
+                    image 'node:24.12.0-alpine3.23'
                     reuseNode true
                 }
             }
@@ -108,10 +108,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    #npm install serve
-                    #node_modules/.bin/serve -s build &
-                    #sleep 10
-                    npx playwright test
+                    npx playwright test --reporter=html
                 '''
             }
 
