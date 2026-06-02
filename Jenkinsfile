@@ -74,7 +74,7 @@ pipeline {
                 
             }
         }
-
+/*
         stage('Deploy') {
             agent {
                 docker {
@@ -85,7 +85,6 @@ pipeline {
             steps {
                 sh '''
                     #npm cache verify
-                    ls node_modules/.bin/netlify
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
@@ -96,7 +95,7 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage('Prod E2E') {
             agent {
                 docker {
