@@ -84,12 +84,13 @@ pipeline {
             }
             steps {
                 sh '''
+                    netlify logout
+                    netlify login --auth $NETLIFY_AUTH_TOKEN    
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
                     node_modules/.bin/netlify status
-                    netlify logout
-                    netlify login --auth $NETLIFY_AUTH_TOKEN    
+
                     node_modules/.bin/netlify deploy --dir=build --prod
                 '''
             }
