@@ -91,7 +91,7 @@ pipeline {
                     #node_modules/.bin/netlify logout
                     #node_modules/.bin/netlify login --auth $NETLIFY_AUTH_TOKEN 
                     node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=node_modules/.bin/build --prod
+                    node_modules/.bin/netlify deploy --dir=build --prod
                 '''
             }
         }
