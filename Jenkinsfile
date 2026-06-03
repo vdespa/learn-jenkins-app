@@ -109,7 +109,10 @@ pipeline {
             }
             steps {
                 sh '''
-                    npx playwright test -g "/Learn Jenkins/" 
+                    npm install serve
+                    node_modules/.bin/serve -s build &
+                    sleep 10
+                    npx playwright test
                 '''
             }
 
