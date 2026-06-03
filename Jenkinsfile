@@ -82,7 +82,7 @@ pipeline {
                 docker {
                     image 'node:24.12.0-alpine3.23'
                     reuseNode true
-                    args '-u root:root'
+                    #args '-u root:root'
                 }
             }
             steps {
@@ -94,7 +94,7 @@ pipeline {
                     node_modules/.bin/netlify status
 
                     #node_modules/.bin/netlify deploy --dir=build --prod --debug
-                    node_modules/.bin/netlify deploy --dir=build
+                    node_modules/.bin/netlify deploy
                 '''
             }
         }
