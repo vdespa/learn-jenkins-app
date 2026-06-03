@@ -38,7 +38,7 @@ pipeline {
                     steps {
                         sh '''
                             test -f build/index.html
-                            echo "Status of index file$?"
+                            echo "Status of index file $?"
                             npm test
                         '''
                     }
@@ -54,6 +54,7 @@ pipeline {
                         docker {
                             image 'mcr.microsoft.com/playwright:v1.60.0-noble'
                             reuseNode true
+                           // args '-u root:root'
                         }
                     }
                     steps {
@@ -85,8 +86,6 @@ pipeline {
             }
             steps {
                 sh '''
-                    #npm cache verify
-                    #npm install
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
