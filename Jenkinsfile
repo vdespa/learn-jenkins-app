@@ -81,7 +81,8 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'node:18-alpine'
+                    image 'mcr.microsoft.com/playwright:v1.60.0-noble'
+    //                image 'node:18-alpine'
                     reuseNode true
                     args '-u root:root'
                 }
