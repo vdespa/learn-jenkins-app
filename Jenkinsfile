@@ -12,6 +12,7 @@ pipeline {
                 docker {
                     image 'node:24.12.0-alpine3.23'
                     reuseNode true
+                    args '-u root:root'
                 }
             }
             steps {
@@ -54,7 +55,7 @@ pipeline {
                         docker {
                             image 'mcr.microsoft.com/playwright:v1.60.0-noble'
                             reuseNode true
-                           // args '-u root:root'
+                            args '-u root:root'
                         }
                     }
                     steps {
@@ -82,7 +83,7 @@ pipeline {
                 docker {
                     image 'node:24.12.0-alpine3.23'
                     reuseNode true
-                    //args '-u root:root'
+                    args '-u root:root'
                 }
             }
             steps {
