@@ -106,7 +106,6 @@ pipeline {
             }
             environment {
                 CI_ENVIRONMENT_URL = 'https://gleaming-stroopwafel-31a7b7.netlify.app/'
-                #CI_ENVIRONMENT_URL = 'http://localhost:3000'
             }
             steps {
                 sh '''
