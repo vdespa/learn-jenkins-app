@@ -81,8 +81,8 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.60.0-noble'
-    //                image 'node:18-alpine'
+     //               image 'mcr.microsoft.com/playwright:v1.60.0-noble'
+                    image 'node:18-alpine'
                     reuseNode true
                     args '-u root:root'
                 }
@@ -95,7 +95,7 @@ pipeline {
 
                     node_modules/.bin/netlify status
 
-                    node_modules/.bin/netlify deploy --dir=build --prod --debug
+                    node_modules/.bin/netlify deploy --dir=build --prod
                     #node_modules/.bin/netlify deploy
                 '''
             }
