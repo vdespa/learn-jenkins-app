@@ -109,7 +109,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    npx playwright test -g "Learn Jenkins" 
+                    npx playwright test -g "/Learn Jenkins/" 
                 '''
             }
 
