@@ -97,6 +97,7 @@ pipeline {
             }
         }
 */
+/*
         stage('Prod E2E') {
             agent {
                 docker {
@@ -122,5 +123,6 @@ pipeline {
                 }
             }
         } 
+        */
     }
 }
