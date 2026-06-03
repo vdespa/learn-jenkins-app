@@ -76,7 +76,7 @@ pipeline {
                 
             }
         }
-/*
+
         stage('Deploy') {
             agent {
                 docker {
@@ -96,7 +96,7 @@ pipeline {
                 '''
             }
         }
-*/
+
 /*
         stage('Prod E2E') {
             agent {
@@ -120,8 +120,7 @@ pipeline {
             post {
                 always {
                     junit 'jest-results/junit.xml'
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-directory', reportFiles: 'index.html', reportName: 'Playwright E2E', reportTitles: '', useWrapperFileDirectly: true])
-                }
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright E2E', reportTitles: '', useWrapperFileDirectly: true])}
             }
         } 
         */
