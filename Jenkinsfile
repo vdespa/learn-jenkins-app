@@ -7,6 +7,12 @@ pipeline {
     }
     
     stages {
+
+        stage('Docker') {
+            steps{
+                sh 'docker build -t my-playwright .'
+            }
+       }
         stage('Build') {
             agent {
                 docker {
@@ -91,10 +97,10 @@ pipeline {
             environment {
                 CI_ENVIRONMENT_URL = 'https://storied-fudge-920216.netlify.app'
             }
-            
+
             steps {
                 sh '''
-                    npm install netlify-cli
+                    npm install netlify-cli node-jq
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
 
