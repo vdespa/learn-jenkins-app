@@ -87,6 +87,11 @@ pipeline {
                     args '-u root:root'
                 }
             }
+            
+            environment {
+                CI_ENVIRONMENT_URL = 'https://storied-fudge-920216.netlify.app'
+            }
+            
             steps {
                 sh '''
                     npm install netlify-cli
