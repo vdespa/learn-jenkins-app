@@ -82,7 +82,8 @@ pipeline {
         stage('Deploy') {
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.60.0-jammy'
+                    image 'node:18-alpine'
+  //                  image 'mcr.microsoft.com/playwright:v1.60.0-jammy'
                     reuseNode true
                     args '-u root:root'
                 }
