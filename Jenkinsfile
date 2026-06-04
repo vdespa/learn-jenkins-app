@@ -119,11 +119,12 @@ pipeline {
                 sh '''
                     npx playwright test --reporter=html
                 '''
-            
+            }
             post {
-                always {
+               always {
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright E2E Report', reportTitles: '', useWrapperFileDirectly: true])
                 }
+             
             }
         }
     }
