@@ -100,6 +100,33 @@ pipeline {
                 '''
             }
         }
+
+                       
+        stage('Prod E2E') {
+            agent {
+                docker {
+                    image 'mcr.microsoft.com/playwright:v1.60.0-jammy'
+                    reuseNode true
+                    args '-u root:root'
+                }      
+            }
+
+            environment {
+                CI_ENVIRONMENT_URL = https://storied-fudge-920216.netlify.app'
+            }
+
+            steps {
+                sh '''
+                    npx playwright test --reporter=html
+                '''
+            
+            post {
+                always {
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright E2E Report', reportTitles: '', useWrapperFileDirectly: true])
+                }
+            }
+        }
+
 /*
         stage('Deploy staging') {
             agent {
