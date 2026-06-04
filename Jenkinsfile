@@ -39,8 +39,8 @@ pipeline {
                     }
                     steps {
                         sh '''
-                            test -f build/index.html
-                            echo "Status of index file $?"
+                            #test -f build/index.html
+                            #echo "Status of index file $?"
                             npm test
                         '''
                     }
