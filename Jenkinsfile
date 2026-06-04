@@ -117,14 +117,18 @@ pipeline {
 
             steps {
                 sh '''
+                    npm install serve
+                    node_modules/.bin/serve -s build &
+                    sleep 10
                     npx playwright test --reporter=html
                 '''
             }
             post {
                always {
+                    junit 'jest-results/junit.xml'
                     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright E2E Report', reportTitles: '', useWrapperFileDirectly: true])
+                    //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, icon: '', keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright local', reportTitles: '', useWrapperFileDirectly: true])
                 }
-             
             }
         }
     }
