@@ -112,7 +112,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = https://storied-fudge-920216.netlify.app'
+                CI_ENVIRONMENT_URL = 'https://storied-fudge-920216.netlify.app'
             }
 
             steps {
