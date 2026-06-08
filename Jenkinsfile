@@ -3,15 +3,12 @@ pipeline {
 
     environment {
         NETLIFY_SITE_ID = '82cf1aa0-25d4-4ad7-b709-f9d1a5b9be47'
-        NETLIFY_AUTH_TOKEN = credentials('netlify-token')    
+        NETLIFY_AUTH_TOKEN = credentials('netlify-token')  
+        def dockerHome = tool 'myDocker' 
+        env.PATH = "${dockerHome}/bin:${env.PATH}" 
     }
     
     stages {
-        stage('Initialize'){
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
-
         stage('Build') {
             agent {
                 docker {
