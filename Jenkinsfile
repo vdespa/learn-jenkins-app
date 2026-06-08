@@ -51,13 +51,13 @@ pipeline {
                         }
                     }
                 }
- /*              
+             
                 stage('E2E') {
                     agent {
                         docker {
                             image 'my-playwright'
                             reuseNode true
-                            args '-u root:root'
+ //                           args '-u root:root'
                         }
                     }
                     steps {
@@ -77,7 +77,7 @@ pipeline {
                 } 
                 
             }
-            */
+            
         }
 
   /*
