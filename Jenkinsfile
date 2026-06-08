@@ -12,9 +12,7 @@ pipeline {
             agent {
                 docker {
                     image 'node:18-alpine'
-                    
                     reuseNode true
-                    args '-u root:root'
                 }
             }
             steps {
@@ -57,7 +55,6 @@ pipeline {
                         docker {
                             image 'my-playwright'
                             reuseNode true
-                            args '-u root:root'
                         }
                     }
                     steps {
@@ -80,13 +77,12 @@ pipeline {
             
         }
 
-  /*
+
         stage('Deploy staging') {
             agent {
                 docker {
                     image 'my-playwright'
                     reuseNode true
-                    args '-u root:root'
                 }
             }
             
@@ -111,7 +107,6 @@ pipeline {
                 docker {
                     image 'my-playwright'
                     reuseNode true
-                    args '-u root:root'
                 }
             }
             
@@ -131,7 +126,7 @@ pipeline {
             }
         }
 
-        */
+    
     }
 }
 /*                       
@@ -140,7 +135,6 @@ pipeline {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.60.0-jammy'
                     reuseNode true
-                    args '-u root:root'
                 }      
             }
 
