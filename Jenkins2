@@ -13,6 +13,7 @@ pipeline {
             */            
             steps {
                 sh '''
+                    docker --version
                     ls -la
                     node --version
                     npm --version 
