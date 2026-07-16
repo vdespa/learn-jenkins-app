@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --testResultsProcessor=\"jest-junit\"",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -38,7 +39,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.39.0",
-    "@types/node": "^20.8.6"
+    "@types/node": "^20.8.6",
+    "eslint": "^10.7.0",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.7.0"
   },
   "jest-junit": {
     "suiteName": "jest tests",
