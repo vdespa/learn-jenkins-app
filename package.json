@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "jest-junit": "^16.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "jest-junit": "^17.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^6.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,8 +38,8 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.61.1",
-    "@types/node": "^20.8.6"
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^26.1.2"
   },
   "jest-junit": {
     "suiteName": "jest tests",
